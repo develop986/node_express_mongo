@@ -1,0 +1,47 @@
+<div class="nav-align row">
+  <div class="col-sm-3">
+    <a class="button-master" href="/rooms/new">項目作成</a>
+  </div>
+  <div class="col-sm-6">
+    <h4>入室一覧</h4>
+  </div>
+  <div class="col-sm-3">
+  </div>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>項目Id</th>
+      <th>項目名</th>
+      <th>作成時間</th>
+      <th>更新時間</th>
+      <th>修正</th>
+      <th>削除</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% rooms.forEach(room=> { %>
+      <tr>
+        <td>
+          <%= room._id %>
+        </td>
+        <td>
+          <%= room.name %>
+        </td>
+        <td>
+          <%= room.createdAt.toLocaleString() %>
+        </td>
+        <td>
+          <%= room.updatedAt.toLocaleString() %>
+        </td>
+        <td>
+          <a href="<%=`rooms/${room._id}/edit`%>">管理用</a>
+        </td>
+        <td>
+          <a href="<%= `rooms/${room._id}/delete?_method=DELETE` %>"
+            onclick="return confirm('Are you sure you want to delete this record?')" a>管理用</a>
+        </td>
+      </tr>
+      <% }); %>
+  </tbody>
+</table>

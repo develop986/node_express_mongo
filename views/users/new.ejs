@@ -1,0 +1,33 @@
+<div class="nav-align">
+  <h4>ユーザー作成</h4>
+</div>
+<div class="data-form">
+  <form class="form-signin" action="/users/create" method="POST">
+    <div class="form-group row">
+      <label for="inputAccount" class="col-sm-2 col-form-label">アカウント</label>
+      <div class="col-sm-10">
+        <input type="text" name="account" class="form-control" id="inputAccount" placeholder="Account" required>
+      </div>
+      <label for="inputPassword" class="col-sm-2 col-form-label">パスワード</label>
+      <div class="col-sm-10">
+        <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password" required>
+      </div>
+      <label for="inputLastName" class="col-sm-2 col-form-label">社員 名字</label>
+      <div class="col-sm-10">
+        <input type="text" name="last" class="form-control" id="inputLastName" placeholder="Last">
+      </div>
+      <label for="inputFirstName" class="col-sm-2 col-form-label">社員 名前</label>
+      <div class="col-sm-10">
+        <input type="text" name="first" class="form-control" id="inputFirstName" placeholder="First" autofocus>
+      </div>
+      <label for="inputAdmin" class="col-sm-2 col-form-label">管理者権限</label>
+      <div class="col-sm-10">
+        <div class="form-check">
+          <input class="form-check-input" name="admin" type="checkbox" id="inputAdmin" value=true>
+          <label class="form-check-label" for="inputAdmin">Check On</label>
+        </div>
+      </div>
+      <br /><button class="btn btn-lg btn-primary btn-block" type="submit">作成</button>
+    </div>
+  </form>
+</div>

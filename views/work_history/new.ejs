@@ -1,0 +1,44 @@
+<div class="nav-align">
+  <h4>作業履歴作成</h4>
+</div>
+<div class="data-form">
+  <form class="form-signin" action="<%=`/work_history/create`%>" method="POST">
+    <div class="form-group row">
+      <label for="inputWorkHistoryUser" class="col-sm-2 col-form-label">ユーザー</label>
+      <div class="col-sm-10">
+        <select class="form-control" name="user" id="inputWorkHistoryUser">
+          <% users.forEach(user=> { %>
+            <option value="<%= user._id %>">
+              <%= user.account %>
+            </option>
+            <% }); %>
+        </select>
+      </div>
+      <label for="inputWorkHistoryWork" class="col-sm-2 col-form-label">作業項目</label>
+      <div class="col-sm-10">
+        <select class="form-control" name="work" id="inputWorkHistoryWork">
+          <% works.forEach(work=> { %>
+            <option value="<%= work._id%>">
+              <%= work.name %>
+            </option>
+            <% }); %>
+        </select>
+      </div>
+      <label for="inputWorkHistoryTimeStart" class="col-sm-2 col-form-label">開始時間</label>
+      <div class="col-sm-5">
+        <input type="date" name="work_start_date" class="form-control" id="inputWorkHistoryStartDate" required>
+      </div>
+      <div class="col-sm-5">
+        <input type="time" name="work_start_hour" step="900" class="form-control" id="inputWorkHistoryStartHour" required>
+      </div>
+      <label for="inputWorkHistoryTimeEnd" class="col-sm-2 col-form-label">終了時間</label>
+      <div class="col-sm-5">
+        <input type="date" name="work_end_date" class="form-control" id="inputWorkHistoryEndDate">
+      </div>
+      <div class="col-sm-5">
+        <input type="time" name="work_end_hour" step="900" class="form-control" id="inputWorkHistoryEndHour">
+      </div>
+      <br /><button class="btn btn-lg btn-primary btn-block" type="submit">作成</button>
+    </div>
+  </form>
+</div>

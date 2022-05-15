@@ -1,0 +1,124 @@
+<div class="nav-align">
+  <h4>入退登録</h4>
+</div>
+<% const room_historying = room_history.filter(data => data.user._id.valueOf() === currentUser._id.valueOf()).find(data =>
+  data.room_end == null) %>
+  <div class="data-form">
+    <% if(room_historying) { %>
+      <form class="form-signin" action="<%=`/room_history/${room_historying._id}/leave?_method=PUT`%>" method="POST">
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">入室状態</label>
+          <div class="col-sm-5">
+            <% rooms.forEach(room=> { %>
+              <% if (room._id.valueOf()===room_historying.room._id.valueOf()) { %>
+                <input type="text" class="form-control" disabled value="<%= room.name %>">
+                <% } %>
+                  <% }); %>
+          </div>
+          <div class="col-sm-5">
+            <input type="text" class="form-control" disabled value="<%= getTime(room_historying.room_start) %>">
+          </div>
+          <button class="btn btn-lg btn-success btn-block col-sm-8" type="submit">入室終了</button>
+          <div class="col-sm-1"></div>
+          <button class="btn btn-lg btn-danger btn-block col-sm-3" type="submit"
+            formaction="<%= `/room_history/${room_historying._id}/undo?_method=DELETE` %>"
+            onclick="return confirm('入室情報を削除して良いですか？')">取消</button>
+        </div>
+      </form>
+      <% } else { %>
+        <form class="form-signin" action="<%=`/room_history/enter`%>" method="POST">
+          <div class="form-group row">
+            <label for="inputRoomHistoryRoom" class="col-sm-2 col-form-label">入室場所</label>
+            <div class="col-sm-10 searchBox">
+              <select class="form-control" name="room" id="inputRoomHistoryRoom">
+                <% rooms.forEach(room=> { %>
+                  <option value="<%= room._id %>">
+                    <%= room.name %>
+                  </option>
+                  <% }); %>
+              </select>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block col-sm-12" type="submit">入室開始</button>
+          </div>
+        </form>
+        <% }; %>
+  </div>
+  <div class="nav-align-list">
+    <h4>本日の勤務状況</h4>
+    <% if(room_historying) { %>
+      <div class="data-form">
+        <div class="form-group row">
+          <label for="inputRoomHistoryRoom" class="col-sm-2 col-form-label">入出場所</label>
+          <div class="col-sm-10 searchBox">
+            <select class="form-control" name="room" id="inputRoomHistoryRoom">
+              <% rooms.forEach(room=> { %>
+                <option <% if (room._id.valueOf() === room_historying.room._id.valueOf()) { %>
+                  selected
+                  <% } %>
+                    value="<%= room._id %>">
+                      <%= room.name %>
+                </option>
+                <% }); %>
+            </select>
+          </div>
+        </div>
+      </div>
+      <% }; %>
+  </div>
+  <div class="nav-align">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>入室場所</th>
+          <th>入室時間</th>
+          <th>退室時間</th>
+          <th>入室者</th>
+          <th>Account</th>
+          <th>解錠</th>
+          <th>施錠</th>
+        </tr>
+      </thead>
+      <tbody class="searchList">
+        <% room_history.forEach(room_history=> { %>
+          <tr>
+            <td class="room">
+              <% rooms.forEach(room=> { %>
+                <% if (room._id.valueOf()===room_history.room._id.valueOf()) { %>
+                  <span class=<%=room._id.valueOf() %>></span>
+                  <%= room.name %>
+                    <% } %>
+                      <% }); %>
+            </td>
+            <td>
+              <%= getTime(room_history.room_start) %>
+            </td>
+            <td>
+              <%= getTime(room_history.room_end) %>
+            </td>
+            <% users.forEach(user=> { %>
+              <% if (user._id.valueOf()===room_history.user._id.valueOf()) { %>
+                <td>
+                  <%= user.fullName %>
+                </td>
+                <td>
+                  <%= user.account %>
+                </td>
+                <% } %>
+                  <% }); %>
+                    </td>
+                    <td>
+                      <% if (room_history.room_unlock) { %>
+                        開始
+                        <% }; %>
+                    </td>
+                    <td>
+                      <% if (room_history.room_lock) { %>
+                        終了
+                        <% }; %>
+                    </td>
+          </tr>
+          <% }); %>
+      </tbody>
+    </table>
+  </div>
+  </div>

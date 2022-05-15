@@ -1,0 +1,57 @@
+<div class="nav-align row">
+  <div class="col-sm-3">
+    <a class="button-master" href="/users/new">ユーザー作成</a>
+  </div>
+  <div class="col-sm-6">
+    <h4>社員一覧</h4>
+  </div>
+  <div class="col-sm-3">
+  </div>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>ユーザーID</th>
+      <th>アカウント</th>
+      <th>社員名</th>
+      <th>権限</th>
+      <th>作成時間</th>
+      <th>更新時間</th>
+      <th>修正</th>
+      <th>削除</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.forEach(user=> { %>
+      <tr>
+        <td>
+          <%= user._id %>
+        </td>
+        <td>
+          <%= user.account %>
+        </td>
+        <td>
+          <%= user.fullName %>
+        </td>
+        <td>
+          <% if (user.admin == true) { %>
+          管理者
+          <% } %>
+        </td>
+        <td>
+          <%= getTime(user.createdAt) %>
+        </td>
+        <td>
+          <%= getTime(user.updatedAt) %>
+        </td>
+        <td>
+          <a href="<%=`/users/${user._id}/edit`%>">管理用</a>
+        </td>
+        <td>
+          <a href="<%=`/users/${user._id}/delete?_method=DELETE` %>"
+            onclick="return confirm('Are you sure you want to delete this record?')" a>管理用</a>
+        </td>
+      </tr>
+      <% }); %>
+  </tbody>
+</table>

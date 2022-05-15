@@ -1,0 +1,15 @@
+<div class="nav-align">
+  <h4>作業項目修正</h4>
+</div>
+<div class="data-form">
+  <form class="form-signin" action="<%=`/works/${work._id}/update?_method=PUT`%>" method="POST">
+    <div class="form-group row">
+      <label for="inputTitle" class="col-sm-2 col-form-label">項目名</label>
+      <div class="col-sm-10">
+        <input type="text" name="name" id="inputTitle" class="form-control" value="<%= work.name %>" placeholder="Name"
+          autofocus>
+      </div>
+      <br /><button class="btn btn-lg btn-primary btn-block" type="submit">修正</button>
+    </div>
+  </form>
+</div>

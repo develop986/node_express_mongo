@@ -1,0 +1,54 @@
+<div class="nav-align">
+  <h4>入室履歴修正</h4>
+</div>
+<div class="data-form">
+  <form class="form-signin" action="<%=`/room_history/${room_history._id}/update?_method=PUT`%>" method="POST">
+    <div class="form-group row">
+      <label for="inputRoomHistoryUser" class="col-sm-2 col-form-label">ユーザー</label>
+      <div class="col-sm-10">
+        <select class="form-control" name="user" id="inputRoomHistoryUser">
+          <% users.forEach(user=> { %>
+            <option <% if (user._id.valueOf() === room_history.user._id.valueOf()) { %>selected <% } %> value="<%= user._id %>"><%= user.account %></option>
+            <% }); %>
+        </select>
+      </div>
+      <label for="inputRoomHistoryRoom" class="col-sm-2 col-form-label">入室項目</label>
+      <div class="col-sm-10">
+        <select class="form-control" name="room" id="inputRoomHistoryRoom">
+          <% rooms.forEach(room=> { %>
+            <option <% if (room._id.valueOf() === room_history.room._id.valueOf()) { %>selected <% } %> value="<%= room._id%>"><%= room.name %></option>
+            <% }); %>
+        </select>
+      </div>
+      <label class="col-sm-2 col-form-label">開始時間</label>
+      <div class="col-sm-5">
+        <input type="date" name="room_start_date" class="form-control" id="inputRoomHistoryStartDate" required value="<%= getDate(room_history.room_start) %>">
+      </div>
+      <div class="col-sm-5">
+        <input type="time" name="room_start_time" step="60" class="form-control" id="inputRoomHistoryStartTime" required value="<%= getHour(room_history.room_start) %>">
+      </div>
+      <label class="col-sm-2 col-form-label">終了時間</label>
+      <div class="col-sm-5">
+        <input type="date" name="room_end_date" class="form-control" id="inputRoomHistoryEndDate" value="<%= getDate(room_history.room_end) %>">
+      </div>
+      <div class="col-sm-5">
+        <input type="time" name="room_end_time" step="60" class="form-control" id="inputRoomHistoryEndTime" value="<%= getHour(room_history.room_end) %>">
+      </div>
+      <label for="inputRoomHistoryUnlock" class="col-sm-2 col-form-label">解錠</label>
+      <div class="col-sm-10">
+        <div class="form-check">
+          <input class="form-check-input" name="room_unlock" type="checkbox" id="inputRoomHistoryUnlock" value=true <% if (room_history.room_unlock) { %>checked<% } %>>
+          <label class="form-check-label" for="inputRoomHistoryUnlock">Check On</label>
+        </div>
+      </div>
+      <label for="inputRoomHistoryLock" class="col-sm-2 col-form-label">施錠</label>
+      <div class="col-sm-10">
+        <div class="form-check">
+          <input class="form-check-input" name="room_lock" type="checkbox" id="inputRoomHistoryLock" value=true <% if (room_history.room_lock) { %>checked<% } %>>
+          <label class="form-check-label" for="inputRoomHistoryLock">Check On</label>
+        </div>
+      </div>
+      <br /><button class="btn btn-lg btn-primary btn-block" type="submit">修正</button>
+    </div>
+  </form>
+</div>

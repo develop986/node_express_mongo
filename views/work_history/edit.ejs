@@ -1,0 +1,48 @@
+<div class="nav-align">
+  <h4>作業履歴修正</h4>
+</div>
+<div class="data-form">
+  <form class="form-signin" action="<%= `/work_history/${work_history._id}/update?_method=PUT`%>" method="POST">
+    <div class="form-group row">
+      <label for="inputWorkHistoryUser" class="col-sm-2 col-form-label">ユーザー</label>
+      <div class="col-sm-10">
+        <select class="form-control" name="user" id="inputWorkHistoryUser">
+          <% users.forEach(user=> { %>
+            <option <% if (user._id.valueOf()===work_history.user._id.valueOf()) { %>selected <% } %> value="<%=
+                  user._id %>"><%= user.account %>
+            </option>
+            <% }); %>
+        </select>
+      </div>
+      <label for="inputWorkHistoryWork" class="col-sm-2 col-form-label">作業項目</label>
+      <div class="col-sm-10">
+        <select class="form-control" name="work" id="inputWorkHistoryWork">
+          <% works.forEach(work=> { %>
+            <option <% if (work._id.valueOf()===work_history.work._id.valueOf()) { %>selected <% } %> value="<%=
+                  work._id%>"><%= work.name %>
+            </option>
+            <% }); %>
+        </select>
+      </div>
+      <label for="inputWorkHistoryTimeStart" class="col-sm-2 col-form-label">開始時間</label>
+      <div class="col-sm-5">
+        <input type="date" name="work_start_date" class="form-control" id="inputWorkHistoryStartDate" required
+          value="<%= getDate(work_history.work_start) %>">
+      </div>
+      <div class="col-sm-5">
+        <input type="time" name="work_start_hour" step="900" class="form-control" id="inputWorkHistoryStartHour"
+          required value="<%= getHour(work_history.work_start) %>">
+      </div>
+      <label for="inputWorkHistoryTimeEnd" class="col-sm-2 col-form-label">終了時間</label>
+      <div class="col-sm-5">
+        <input type="date" name="work_end_date" class="form-control" id="inputWorkHistoryEndDate"
+          value="<%= getDate(work_history.work_end) %>">
+      </div>
+      <div class="col-sm-5">
+        <input type="time" name="work_end_hour" step="900" class="form-control" id="inputWorkHistoryEndHour"
+          value="<%= getHour(work_history.work_end) %>">
+      </div>
+      <br /><button class="btn btn-lg btn-primary btn-block" type="submit">修正</button>
+    </div>
+  </form>
+</div>

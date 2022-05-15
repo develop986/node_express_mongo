@@ -1,0 +1,98 @@
+<div class="nav-align">
+  <h4>作業登録</h4>
+</div>
+<% const work_historying=work_history.filter(data=> data.user._id.valueOf() === currentUser._id.valueOf()).find(data =>
+  data.work_end == null) %>
+  <div class="data-form">
+    <% if(work_historying) { %>
+      <form class="form-signin" action="<%=`/work_history/${work_historying._id}/leave?_method=PUT`%>" method="POST">
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">作業状態</label>
+          <div class="col-sm-5">
+            <% works.forEach(work=> { %>
+              <% if (work._id.valueOf()===work_historying.work._id.valueOf()) { %>
+                <input type="text" class="form-control" disabled value="<%= work.name %>">
+                <% }}); %>
+          </div>
+          <div class="col-sm-5">
+            <input type="text" class="form-control" id="inputWorkHistoryStart" disabled
+              value="<%= getTime(work_historying.work_start) %>">
+          </div>
+          <label for="inputWorkHistoryStart" class="col-sm-2 col-form-label">終了時間</label>
+          <div class="col-sm-5">
+            <input type="text" name="work_end" class="form-control" id="inputWorkHistoryEnd" readonly
+              value="<%= work_hour_end_str %>">
+          </div>
+          <div class="col-sm-5">
+            <select class="form-control" name="work" id="inputWorkHistoryWork">
+              <% works.forEach(work=> { %>
+                <option value="<%= work._id %>">
+                  <%= work.name %>
+                </option>
+                <% }); %>
+                  <option value="null">作業終了</option>
+            </select>
+          </div>
+          <button class="btn btn-lg btn-success btn-block col-sm-8" id="inputButtonEnd" type="submit">作業終了</button>
+          <button class="btn btn-lg btn-primary btn-block col-sm-8" id="inputButtonNext" type="submit">作業継続</button>
+          <div class="col-sm-1"></div>
+          <button class="btn btn-lg btn-danger btn-block col-sm-3" type="submit"
+            formaction="<%= `/work_history/${work_historying._id}/undo?_method=DELETE` %>"
+            onclick="return confirm('作業情報を訂正して良いですか？')">訂正</button>
+        </div>
+      </form>
+      <% } else { %>
+        <form class="form-signin" action="<%=`/work_history/enter`%>" method="POST">
+          <div class="form-group row">
+            <label for="inputWorkHistoryWork" class="col-sm-2 col-form-label">開始内容</label>
+            <div class="col-sm-5">
+              <select class="form-control" name="work" id="inputWorkHistoryWork">
+                <% works.forEach(work=> { %>
+                  <option value="<%= work._id %>">
+                    <%= work.name %>
+                  </option>
+                  <% }); %>
+              </select>
+            </div>
+            <div class="col-sm-5">
+              <input type="text" name="work_start" class="form-control" id="inputWorkHistoryStart" readonly
+                value="<%= work_hour_start_str %>">
+            </div>
+            <button class="btn btn-lg btn-primary btn-block col-sm-12" type="submit">作業開始</button>
+          </div>
+        </form>
+        <% }; %>
+  </div>
+  <div class="nav-align-list">
+    <h4>本日の作業状況</h4>
+  </div>
+  <div class="nav-align">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>作業項目</th>
+          <th>開始時間</th>
+          <th>終了時間</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% work_history.forEach(work_history=> { %>
+          <tr>
+            <td>
+              <% works.forEach(work=> { %>
+                <% if (work._id.valueOf()===work_history.work._id.valueOf()) { %>
+                  <%= work.name %>
+                    <% } %>
+                      <% }); %>
+            </td>
+            <td>
+              <%= getTime(work_history.work_start) %>
+            </td>
+            <td>
+              <%= getTime(work_history.work_end) %>
+            </td>
+          </tr>
+          <% }); %>
+      </tbody>
+    </table>
+  </div>

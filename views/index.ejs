@@ -1,0 +1,50 @@
+<div class="nav-align row">
+  <div class="col-sm-3">
+  </div>
+  <div class="col-sm-6">
+    <h4>勤務履歴</h4>
+  </div>
+  <div class="col-sm-3">
+    <a class="button" href="/users/password/">パスワード変更</a>
+  </div>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>開始時間</th>
+      <th>終了時間</th>
+      <th>勤務場所</th>
+      <th>解錠</th>
+      <th>施錠</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% room_history.forEach(room_history=> { %>
+      <tr>
+        <td>
+          <%= getTime(room_history.room_start) %>
+        </td>
+        <td>
+          <%= getTime(room_history.room_end) %>
+        </td>
+        <td>
+          <% rooms.forEach(room=> { %>
+            <% if (room._id.valueOf()===room_history.room._id.valueOf()) { %>
+              <%= room.name %>
+                <% } %>
+                  <% }); %>
+        </td>
+        <td>
+          <% if (room_history.room_unlock) { %>
+            実施
+            <% }; %>
+        </td>
+        <td>
+          <% if (room_history.room_lock) { %>
+            実施
+            <% }; %>
+        </td>
+      </tr>
+      <% }); %>
+  </tbody>
+</table>

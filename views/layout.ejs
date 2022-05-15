@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1">
+	<title>作業管理システム</title>
+	<link rel="shortcut icon" type="image/png" href="/images/icon.png" />
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+	<script type="text/javascript" src="/js/workmngapp.js"></script>
+	<link rel="stylesheet" href="/css/confetti_cuisine.css">
+</head>
+
+<body>
+	<div id="nav">
+		<div class="col-sm nav-align">
+			<h2 id="title">作業管理システム</h2>
+		</div>
+		<div class="col-sm nav-align">
+			<% if (loggedIn) { %>
+			<a href="/">
+				<span class="button">勤務履歴</span>
+			</a>
+			<% if (currentUser.admin) { %>
+			<a href="/users">
+				<span class="button-master">社員一覧</span>
+			</a>
+			<% } %>
+			<a href="/room_history/register">
+				<span class="button">入退登録</span>
+			</a>
+			<a href="/rooms">
+				<span class="button-master">入室項目</span>
+			</a>
+			<% if (currentUser.admin) { %>
+			<a href="/room_history">
+				<span class="button-Fix">入退管理</span>
+			</a>
+			<% } %>
+			<a href="/work_history/register">
+				<span class="button">作業登録</span>
+			</a>
+			<a href="/works">
+				<span class="button-master">作業項目</span>
+			</a>
+			<% if (currentUser.admin) { %>
+			<a href="/work_history">
+				<span class="button-Fix">作業管理</span>
+			</a>
+			<% } %>
+			<% } %>
+		</div>
+
+		<div class="flashes">
+			<% if (flashMessages) { %>
+			<% if (flashMessages.success) { %>
+			<div class="flash success">
+				<%= flashMessages.success %>
+			</div>
+			<% } else if (flashMessages.error) { %>
+			<div class="flash error">
+				<%= flashMessages.error %>
+			</div>
+			<% } %>
+			<% } %>
+		</div>
+		
+		<div class="login">
+			<% if (loggedIn) { %>
+			<p>
+				<a href="/users/password/">
+					<%= currentUser.account %></a>
+				<span class="log-out">
+					<a href="/users/logout">Log out</a>
+				</span>
+			</p>
+			<%} else {%>
+			<a href="/users/login">Log In</a>
+			<% } %>
+		</div>
+	</div>
+
+	<div class="container">
+		<%- body %>
+	</div>
+
+</body>
+
+</html>

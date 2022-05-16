@@ -1,5 +1,6 @@
 "use strict";
 
+const { body, validationResult } = require('express-validator');
 
 const User = require("../models/user"),
   passport = require("passport"),
@@ -246,19 +247,19 @@ module.exports = {
   },
 
   validate: (req, res, next) => {
-    req.check("account", "Account cannot be empty").notEmpty();
-    req.check("password", "Password cannot be empty").notEmpty();
-    req.getValidationResult().then(error => {
-      if (!error.isEmpty()) {
-        let messages = error.array().map(e => e.msg);
-        req.skip = true;
-        req.flash("error", messages.join(" and "));
-        res.locals.redirect = "/users/new";
-        next();
-      } else {
-        next();
-      }
-    });
+    //req.check("account", "Account cannot be empty").notEmpty();
+    //req.check("password", "Password cannot be empty").notEmpty();
+    //req.getValidationResult().then(error => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      let messages = error.array().map(e => e.msg);
+      req.skip = true;
+      req.flash("error", messages.join(" and "));
+      res.locals.redirect = "/users/new";
+      next();
+    } else {
+      next();
+    }
   },
 
   authenticate: passport.authenticate("local", {

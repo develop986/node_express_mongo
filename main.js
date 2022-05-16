@@ -74,5 +74,5 @@ app.use((req, res, next) => {
 app.use("/", router);
 
 const server = app.listen(app.get("port"), () => {
-    console.log(`Server running at http://localhost:${app.get("port")}`);
-  });
+  console.log(`Server running at http://localhost:${app.get("port")}`);
+});

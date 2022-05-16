@@ -1,5 +1,7 @@
 "use strict";
 
+const { body, validationResult } = require('express-validator');
+
 const router = require("express").Router(),
   homeController = require("../controllers/homeController"),
   usersController = require("../controllers/usersController");
@@ -8,6 +10,8 @@ router.get("/", homeController.init, usersController.list, usersController.index
 router.get("/new", usersController.new);
 router.post(
   "/create",
+  body('account').notEmpty(),
+  body('password').notEmpty(),
   usersController.validate,
   usersController.create,
   usersController.redirectView

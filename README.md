@@ -62,6 +62,7 @@ http://localhost:3000/
 >     - `01_Indigo.md`
 >     - `02_Apache.md`
 >     - `80_NodeJs.md`
+>     - `80_MongoDB.md`
 
 > https://github.com/develop986/centos_server
 
@@ -158,4 +159,25 @@ Include /etc/letsencrypt/options-ssl-apache.conf
 # systemctl restart httpd
 ```
 
-https://nodeexpressmongo.mysv986.com
+## アクセス
+
+- https://nodeexpressmongo.mysv986.com
+
+> テスト用に、権限なしでユーザーを追加できるようにしています。  
+> 以下にアクセスして下さい。
+
+- https://nodeexpressmongo.mysv986.com/users/new
+
+## 説明事項
+
+- 管理者ユーザーと、通常ユーザーの二種類が作成できます。
+- どちらのユーザーも、入退登録と、作業登録の二種類の入力と
+  以下テーブルのCRUD操作が可能です。
+  - 入室項目（マスタテーブル）
+  - 作業項目（マスタテーブル）
+- 管理者ユーザーは、更に以下テーブルのCRUD操作が可能ですが、  
+  履歴テーブルは下手に編集すると、データがおかしくなってしまいます。
+  あくまでも保守用の機能ですので、割り切って使用して下さい。
+  - 社員一覧（マスタテーブル）
+  - 入退管理（履歴テーブル）
+  - 作業管理（履歴テーブル）

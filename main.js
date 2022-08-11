@@ -21,7 +21,7 @@ const express = require("express"),
   User = require("./models/user");
 
 mongoose.connect(
-  "mongodb://localhost:27017/workmng_db",
+  "mongodb://mongo:27017/workmng_db",
   { useNewUrlParser: true }
 );
 //mongoose.set("useCreateIndex", true);

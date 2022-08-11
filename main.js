@@ -73,6 +73,6 @@ app.use((req, res, next) => {
 
 app.use("/", router);
 
-const server = app.listen(app.get("port"), () => {
+const server = app.listen(app.get("port"), '0.0.0.0', () => {
   console.log(`Server running at http://localhost:${app.get("port")}`);
 });

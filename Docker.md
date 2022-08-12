@@ -1,7 +1,7 @@
 ## Dockerでのアプリ環境構築
 
-[Node.js Web アプリケーションを Docker 化する](https://nodejs.org/ja/docs/guides/nodejs-docker-webapp/)
-[Dockerでnginx + Node.js + MongoDBの環境を用意する](https://zenn.dev/cizneeh/articles/nginx-node-mongo-docker-example)
+- [Node.js Web アプリケーションを Docker 化する](https://nodejs.org/ja/docs/guides/nodejs-docker-webapp/)
+- [Dockerでnginx + Node.js + MongoDBの環境を用意する](https://zenn.dev/cizneeh/articles/nginx-node-mongo-docker-example)
 
 ### 古いデータを全て削除する場合
 

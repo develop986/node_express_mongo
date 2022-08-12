@@ -1,31 +1,28 @@
-[Node.js Web アプリケーションを Docker 化する](https://nodejs.org/ja/docs/guides/nodejs-docker-webapp/)
+# Node.Js Express MongoDB サンプルアプリ
 
-```
-$ docker build --no-cache -t develop986/debian_nodejs_server .
-$ docker run -p 3000:3000 -d --name testserver develop986/debian_nodejs_server
-$ curl -i localhost:3000
-$ docker logs testserver
+> Node.Js、Express、MongoDB で作成した、簡易作業管理システムです
+> - ログイン認証
+> - CRUD
+> - パスワード変更
+> - パスワード暗号化保存
 
+| パッケージ名 | バージョン |
+| ------------- | ------------- |
+| connect-flash  | ^0.1.1  |
+| cookie-parser  | ^1.4.6  |
+| ejs  | ^3.1.8  |
+| express  | ^4.18.1  |
+| express-ejs-layouts  | ^2.5.1  |
+| express-session  | ^1.17.3  |
+| express-validator  | ^6.14.2  |
+| http-status-codes  | ^2.2.0  |
+| method-override  | ^3.0.0  |
+| mongoose  | ^6.5.2  |
+| passport  | ^0.6.0  |
+| passport-local-mongoose  | ^7.1.2  |
 
-コンテナに接続する場合
-$ docker exec -it testserver /bin/bash
-```
+## 環境構築
 
-### 削除する場合
-
-```
-$ docker ps -a
-$ docker rm -f testserver
-$ docker images
-$ docker image rm -f develop986/debian_nodejs_server
-$ docker image rm -f node:16
-```
-
-[Dockerでnginx + Node.js + MongoDBの環境を用意する](https://zenn.dev/cizneeh/articles/nginx-node-mongo-docker-example)
-
-```
-$ docker compose up -d
-
-コンポーネントを削除する場合
-$ docker compose down -v
-```
+1. [アプリ説明と開発環境](./app/README.md)
+2. [Dockerでのアプリ環境構築](Docker.md)
+3. [CentOSでのアプリ環境構築](CentOS.md)

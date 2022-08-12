@@ -3,13 +3,13 @@ services:
     build: ./nginx
     container_name: nginx
     depends_on:
-      - server
+      - app
     ports:
       - 80:80
 
-  server:
-    build: ./server
-    container_name: server
+  app:
+    build: ./app
+    container_name: app
     environment:
       TZ: Asia/Tokyo
     depends_on:

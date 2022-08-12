@@ -1,8 +1,7 @@
 FROM node:latest
 
 # アプリケーションディレクトリを作成する
-WORKDIR /var/www/
-RUN git clone https://github.com/develop986/node_express_mongo
+RUN mkdir -p /var/www/node_express_mongo
 WORKDIR /var/www/node_express_mongo
 
 
@@ -16,7 +15,7 @@ RUN npm install
 # RUN npm install --only=production
 
 # アプリケーションのソースをバンドルする
-# COPY . .
+COPY . .
 
 EXPOSE 3000
 CMD [ "node", "main.js" ]

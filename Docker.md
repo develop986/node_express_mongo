@@ -23,10 +23,11 @@ $ docker volume prune
 
 未使用ネットワーク一括削除
 $ docker network prune
-'''
+```
 
 ### コンポーネント一括操作
 
+```
 コンポーネントを一括作成し、起動
 $ docker compose up -d
 

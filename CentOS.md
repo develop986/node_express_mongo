@@ -1,4 +1,4 @@
-## サーバー構築（CentOS Stream release 8）
+## CentOSでのアプリ環境構築（CentOS Stream release 8）
 
 > 動作環境
 > - [WebARENA Indigo](https://web.arena.ne.jp/indigo/)
@@ -15,7 +15,7 @@
 ```
 # git clone https://github.com/develop986/node_express_mongo
 # git pull
-# cd node_express_mongo
+# cd node_express_mongo/app
 # npm install
 ```
 
@@ -36,8 +36,8 @@ After=syslog.target network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/node /root/node_express_mongo/main.js
-WorkingDirectory=/root/node_express_mongo
+ExecStart=/usr/bin/node /root/node_express_mongo/app/main.js
+WorkingDirectory=/root/node_express_mongo/app
 KillMode=process
 Restart=always
 User=root

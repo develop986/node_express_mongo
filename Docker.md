@@ -68,4 +68,33 @@ $ docker exec -it mongo bin/bash
 - [Let’s EncryptとcertbotとDockerを使ってwebアプリをSSL化する](https://blog.panicblanket.com/archives/6759)
 
 ```
+$ sudo su -
+# git clone https://github.com/develop986/node_express_mongo
+# cd node_express_mongo/certbot/
+# docker compose up -d nginx
+# docker compose run --rm certbot certonly --webroot -w /var/www/html -d nodeexpressmongo.mysv986.com
+
+ (Enter 'c' to cancel): kuhataku@gmail.com
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Please read the Terms of Service at
+https://letsencrypt.org/documents/LE-SA-v1.2-November-15-2017.pdf. You must
+agree in order to register with the ACME server. Do you agree?
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(Y)es/(N)o: Y
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Would you be willing, once your first certificate is successfully issued, to
+share your email address with the Electronic Frontier Foundation, a founding
+partner of the Let's Encrypt project and the non-profit organization that
+develops Certbot? We'd like to send you email about our work encrypting the web,
+EFF news, campaigns, and ways to support digital freedom.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(Y)es/(N)o: N
+
+
+これで証明書が /etc/letsencrypt 以下に保存される
+
+$ docker compose down
+
 ```

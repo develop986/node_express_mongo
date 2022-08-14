@@ -22,8 +22,10 @@
 $ sudo vi /etc/hosts
 
 127.0.0.1       mongo
+127.0.0.1       nodeexpressmongo.mysv986.com
 
 $ ping mongo
+$ ping nodeexpressmongo.mysv986.com
 
 $ sudo mkdir -p /data/db
 $ sudo mongod

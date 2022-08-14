@@ -112,5 +112,7 @@ $ docker compose down
 # cd
 # cd node_express_mongo
 # docker compose up -d
-# curl -sSLv  https://localhost
+
+# curl -v http://nodeexpressmongo.mysv986.com
+# curl -v https://nodeexpressmongo.mysv986.com
 ```

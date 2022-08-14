@@ -58,6 +58,13 @@ $ docker logs mongo
 $ docker exec -it nginx bin/bash
 $ docker exec -it app bash
 $ docker exec -it mongo bin/bash
+
+ネットワーク状況確認用
+# apt update && apt install -y iputils-ping net-tools dnsutils iproute2
+# ip addr
+# ping app
+
+http://172.21.0.3:3000/
 ```
 
 ### Dockerで外部サーバーに公開する場合
@@ -96,5 +103,9 @@ EFF news, campaigns, and ways to support digital freedom.
 これで証明書が /etc/letsencrypt 以下に保存される
 
 $ docker compose down
+
+
+# cd
+# cd node_express_mongo
 
 ```

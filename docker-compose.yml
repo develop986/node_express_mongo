@@ -2,6 +2,7 @@ services:
   nginx:
     build: ./nginx
     container_name: nginx
+    restart: always
     depends_on:
       - app
     ports:
@@ -15,6 +16,7 @@ services:
   app:
     build: ./app
     container_name: app
+    restart: always
     environment:
       TZ: Asia/Tokyo
     depends_on:
@@ -23,6 +25,7 @@ services:
   mongo:
     image: mongo:latest
     container_name: mongo
+    restart: always
     ## 永続化が必要な場合は有効にする
     # volumes:
     # - ./mongo/init.js:/workmng_db/init.js:ro # mongoの専用ユーザを作成する場合

@@ -23,6 +23,10 @@ $ docker volume prune
 
 未使用ネットワーク一括削除
 $ docker network prune
+
+キャッシュの削除
+$ docker system df
+$ docker builder prune
 ```
 
 ### コンポーネント一括操作
@@ -107,5 +111,6 @@ $ docker compose down
 
 # cd
 # cd node_express_mongo
-
+# docker compose up -d
+# curl -sSLv  https://localhost
 ```

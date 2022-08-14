@@ -6,6 +6,11 @@ services:
       - app
     ports:
       - 80:80
+      - 443:443
+    volumes:
+      - /root/nginx/etc:/etc/nginx/conf.d
+      - /root/nginx/log:/var/log/nginx
+      - /etc/letsencrypt:/etc/letsencrypt
 
   app:
     build: ./app
@@ -16,7 +21,7 @@ services:
       - mongo
 
   mongo:
-    image: mongo
+    image: mongo:latest
     container_name: mongo
     ## 永続化が必要な場合は有効にする
     # volumes:

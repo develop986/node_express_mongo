@@ -62,7 +62,7 @@ $ docker exec -it mongo bin/bash
 
 ### Dockerで外部サーバーに公開する場合
 
-> [Dockerインストール](https://github.com/develop986/ubuntu_server/blob/main/02.Docker.md) まで構築を終わらせておくこと
+> [Dockerインストール](https://github.com/develop986/ubuntu_server/blob/main/02.Docker.md) まで終わらせておくこと
 
 
 - [Let’s EncryptとcertbotとDockerを使ってwebアプリをSSL化する](https://blog.panicblanket.com/archives/6759)

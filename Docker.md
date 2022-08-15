@@ -68,72 +68,6 @@ $ docker stop app
 $ docker start app
 ```
 
-
-
-    
-
-### 古いデータを全て削除する場合
-
-```
-全コンテナ一括削除
-$ docker rm -f `docker ps -a -q`
-
-未使用イメージ一括削除
-$ docker rmi `docker images -q`
-
-未使用ボリューム一括削除
-$ docker volume prune
-
-未使用ネットワーク一括削除
-$ docker network prune
-
-キャッシュの削除
-$ docker system df
-$ docker builder prune
-```
-
-### コンポーネント一括操作
-
-```
-コンポーネントを一括作成し、起動
-$ docker compose up -d
-
-http://localhost
-
-コンポーネントを削除する場合
-$ docker compose down -v
-```
-
-### 状態の確認
-
-```
-イメージ
-$ docker images
-
-実行中コンテナ
-$ docker ps
-
-全てのコンテナ
-$ docker ps -a
-
-状態確認
-$ docker logs nginx
-$ docker logs app
-$ docker logs mongo
-
-接続
-$ docker exec -it nginx bin/bash
-$ docker exec -it app bash
-$ docker exec -it mongo bin/bash
-
-ネットワーク状況確認用
-# apt update && apt install -y iputils-ping net-tools dnsutils iproute2
-# ip addr
-# ping app
-
-http://172.21.0.3:3000/
-```
-
 ### Dockerを使った公開環境構築（VPSでの作業）
 
 > [Dockerインストール](https://github.com/develop986/ubuntu_server/blob/main/02.Docker.md) まで終わらせておくこと
@@ -189,4 +123,61 @@ EFF news, campaigns, and ways to support digital freedom.
     docker compose -f /root/node_express_mongo/certbot/docker-compose.yml run --rm certbot renew \
     && docker exec nginx nginx -s reload
 } >> /var/log/renew-cert.log 2>&1
+```
+
+
+### 古いデータを全て削除する場合
+
+```
+全コンテナ一括削除
+$ docker rm -f `docker ps -a -q`
+
+未使用イメージ一括削除
+$ docker rmi `docker images -q`
+
+未使用ボリューム一括削除
+$ docker volume prune
+
+未使用ネットワーク一括削除
+$ docker network prune
+
+キャッシュの削除
+$ docker system df
+$ docker builder prune
+```
+
+### コマンド集
+
+```
+コンポーネントを一括作成し、起動
+$ docker compose up -d
+
+コンポーネントを削除する場合
+$ docker compose down -v
+
+イメージ
+$ docker images
+
+実行中コンテナ
+$ docker ps
+
+全てのコンテナ
+$ docker ps -a
+
+状態確認
+$ docker logs nginx
+$ docker logs app
+$ docker logs mongo
+
+接続
+$ docker exec -it nginx bin/bash
+$ docker exec -it app bash
+$ docker exec -it mongo bin/bash
+
+ネットワーク状況確認用
+# apt update && apt install -y iputils-ping net-tools dnsutils iproute2
+# ip addr
+# ping app
+
+http://172.21.0.3:3000/
 ```

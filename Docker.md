@@ -116,5 +116,5 @@ EFF news, campaigns, and ways to support digital freedom.
 # curl -v http://nodeexpressmongo.mysv986.com
 # curl -v https://nodeexpressmongo.mysv986.com
 
-# docker compose -f ./certbot/docker-compose.yml run --rm certbot renew --webroot -w /var/www/html -d nodeexpressmongo.mysv986.com
+# docker compose -f ./certbot/docker-compose.yml run --rm certbot renew
 ```

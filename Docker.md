@@ -121,5 +121,12 @@ EFF news, campaigns, and ways to support digital freedom.
 自動更新設定
 
 ```
-# docker compose -f /root/node_express_mongo/certbot/docker-compose.yml run --rm certbot renew && docker compose exec nginx nginx -s reload
+# vi /etc/cron.weekly/renew-cert 
+
+#!/bin/bash
+{
+    echo "---- start renew-cert $(date '+%Y-%m-%d %H:%M:%S')"
+    docker compose -f /root/node_express_mongo/certbot/docker-compose.yml run --rm certbot renew \
+    && docker exec nginx nginx -s reload
+} >> /var/log/renew-cert.log 2>&1
 ```

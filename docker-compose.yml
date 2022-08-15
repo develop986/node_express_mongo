@@ -28,9 +28,9 @@ services:
     container_name: mongo
     restart: always
     ## 永続化が必要な場合は有効にする
-    # volumes:
-    # - ./mongo/init.js:/workmng_db/init.js:ro # mongoの専用ユーザを作成する場合
-    # - ./mongo/mongo-data:/data/db
+    volumes:
+      # - ./mongo/init.js:/workmng_db/init.js:ro # mongoの専用ユーザを作成する場合
+      - ./mongo/mongo-data:/data/db
     ## 認証機能を使用する場合
     # environment:
     #   MONGO_INITDB_DATABASE: admin

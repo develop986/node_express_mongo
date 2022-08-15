@@ -2,12 +2,14 @@
 
 - [Node.js Web アプリケーションを Docker 化する](https://nodejs.org/ja/docs/guides/nodejs-docker-webapp/)
 - [Dockerでnginx + Node.js + MongoDBの環境を用意する](https://zenn.dev/cizneeh/articles/nginx-node-mongo-docker-example)
+- [Let’s EncryptとcertbotとDockerを使ってwebアプリをSSL化する](https://blog.panicblanket.com/archives/6759)
 
 ### 構成
 - 全体：[docker-compose.yml](docker-compose.yml)
   - アプリ：[リンク](./app/)、[Dockerfile](./app/Dockerfile)
-  - Nginx：[リンク](./nginx/)、[Dockerfile](./nginx/Dockerfile)
+  - Nginx：[リンク](./nginx/)
   - MongoDB：[リンク](./mongo/)
+  - Certbot：[リンク](./certbot/)、[docker-compose.yml](certbot/docker-compose.yml)
 
 ### 古いデータを全て削除する場合
 
@@ -71,12 +73,9 @@ $ docker exec -it mongo bin/bash
 http://172.21.0.3:3000/
 ```
 
-### Dockerで外部サーバーに公開する場合
+### 外部サーバーで公開する場合
 
 > [Dockerインストール](https://github.com/develop986/ubuntu_server/blob/main/02.Docker.md) まで終わらせておくこと
-
-
-- [Let’s EncryptとcertbotとDockerを使ってwebアプリをSSL化する](https://blog.panicblanket.com/archives/6759)
 
 ```
 $ sudo su -
@@ -106,7 +105,8 @@ EFF news, campaigns, and ways to support digital freedom.
 
 これで証明書が /etc/letsencrypt 以下に保存される
 
-$ docker compose down
+nginx だけ削除する
+# docker compose down -v nginx
 
 
 # cd
@@ -115,4 +115,6 @@ $ docker compose down
 
 # curl -v http://nodeexpressmongo.mysv986.com
 # curl -v https://nodeexpressmongo.mysv986.com
+
+# docker compose -f ./certbot/docker-compose.yml run --rm certbot renew --webroot -w /var/www/html -d nodeexpressmongo.mysv986.com
 ```

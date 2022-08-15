@@ -1,6 +1,6 @@
 services:
   nginx:
-    build: ./nginx
+    image: nginx:latest
     container_name: nginx
     restart: always
     depends_on:
@@ -10,6 +10,7 @@ services:
       - 443:443
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./html:/var/www/html
       - /root/nginx/log:/var/log/nginx
       - /etc/letsencrypt:/etc/letsencrypt
 

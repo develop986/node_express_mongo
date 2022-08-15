@@ -112,7 +112,7 @@ EFF news, campaigns, and ways to support digital freedom.
 # curl -v https://nodeexpressmongo.mysv986.com
 ```
 
-自動更新設定
+自動更新設定（CRONで毎週実行）
 
 ```
 # vi /etc/cron.weekly/renew-cert 
@@ -123,6 +123,9 @@ EFF news, campaigns, and ways to support digital freedom.
     docker compose -f /root/node_express_mongo/certbot/docker-compose.yml run --rm certbot renew \
     && docker exec nginx nginx -s reload
 } >> /var/log/renew-cert.log 2>&1
+
+# source /etc/cron.weekly/renew-cert 
+# cat /var/log/renew-cert.log 
 ```
 
 

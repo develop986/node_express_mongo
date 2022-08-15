@@ -105,8 +105,8 @@ EFF news, campaigns, and ways to support digital freedom.
 
 これで証明書が /etc/letsencrypt 以下に保存される
 
-nginx だけ削除する
-# docker compose down -v nginx
+一旦削除
+# docker compose down -v
 
 
 # cd

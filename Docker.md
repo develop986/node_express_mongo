@@ -3,6 +3,7 @@
 - [Node.js Web アプリケーションを Docker 化する](https://nodejs.org/ja/docs/guides/nodejs-docker-webapp/)
 - [Dockerでnginx + Node.js + MongoDBの環境を用意する](https://zenn.dev/cizneeh/articles/nginx-node-mongo-docker-example)
 - [Let’s EncryptとcertbotとDockerを使ってwebアプリをSSL化する](https://blog.panicblanket.com/archives/6759)
+- [dockerでlet's encryptを使ってSSLを有効にする](https://paulownia.hatenablog.com/entry/2020/09/12/150658)
 
 ### 構成
 - 全体：[docker-compose.yml](docker-compose.yml)
@@ -115,6 +116,10 @@ EFF news, campaigns, and ways to support digital freedom.
 
 # curl -v http://nodeexpressmongo.mysv986.com
 # curl -v https://nodeexpressmongo.mysv986.com
+```
 
-# docker compose -f ./certbot/docker-compose.yml run --rm certbot renew
+自動更新設定
+
+```
+# docker compose -f /root/node_express_mongo/certbot/docker-compose.yml run --rm certbot renew && docker compose exec nginx nginx -s reload
 ```

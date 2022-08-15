@@ -1,0 +1,17 @@
+services:
+  app:
+    build: .
+    container_name: app
+    restart: always
+    environment:
+      TZ: Asia/Tokyo
+    depends_on:
+      - mongo
+    ports:
+      - 3000:3000
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    restart: always
+    command: [ mongod ]

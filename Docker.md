@@ -6,11 +6,71 @@
 - [dockerでlet's encryptを使ってSSLを有効にする](https://paulownia.hatenablog.com/entry/2020/09/12/150658)
 
 ### 構成
-- 全体：[docker-compose.yml](docker-compose.yml)
-  - アプリ：[リンク](./app/)、[Dockerfile](./app/Dockerfile)
-  - Nginx：[リンク](./nginx/)
-  - MongoDB：[リンク](./mongo/)
-  - Certbot：[リンク](./certbot/)、[docker-compose.yml](certbot/docker-compose.yml)
+
+- 開発環境（パソコンでの作業）
+  - アプリ：[リンク](./app/)、[docker-compose.yml](./app/docker-compose.yml)、[Dockerfile](./app/Dockerfile)
+
+- 公開環境（VPSでの作業）
+　- 全体：[docker-compose.yml](docker-compose.yml)
+    - アプリ：[リンク](./app/)、[Dockerfile](./app/Dockerfile)
+    - Nginx：[リンク](./nginx/)
+    - MongoDB：[リンク](./mongo/)
+  - SSL証明書作成、更新
+    - Certbot：[リンク](./certbot/)、[docker-compose.yml](certbot/docker-compose.yml)
+
+
+### 開発環境（パソコンでの作業）
+
+#### ビルド（合わせて起動）
+
+```
+$ cd app
+$ docker compose up -d
+$ curl -v http://localhost:3000
+```
+
+http://localhost:3000
+http://localhost:3000/users/new
+
+#### 構成の確認
+
+```
+イメージ一覧
+$ docker images
+
+コンテナ一覧（実行中のみ）
+$ docker ps
+
+コンテナ一覧（未実行分も含む）
+$ docker ps -a
+```
+
+#### 最新化
+
+```
+$ docker compose down && docker image rm -f app_app:latest && docker compose up -d
+```
+
+#### 状況確認用
+
+```
+$ docker logs app
+$ docker exec -it app bash
+
+$ docker logs mongo
+$ docker exec -it mongo bin/bash
+```
+
+#### 起動、停止
+
+```
+$ docker stop app
+$ docker start app
+```
+
+
+
+    
 
 ### 古いデータを全て削除する場合
 
@@ -74,7 +134,7 @@ $ docker exec -it mongo bin/bash
 http://172.21.0.3:3000/
 ```
 
-### 外部サーバーで公開する場合
+### 公開環境（VPSでの作業）
 
 > [Dockerインストール](https://github.com/develop986/ubuntu_server/blob/main/02.Docker.md) まで終わらせておくこと
 

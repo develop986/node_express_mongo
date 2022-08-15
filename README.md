@@ -24,5 +24,5 @@
 ## 環境構築
 
 1. [アプリ説明と開発環境](./app/README.md)
-2. [Dockerでのアプリ環境構築](Docker.md)
+2. [Dockerを使ったアプリ環境構築](Docker.md)
 3. [CentOSでのアプリ環境構築](CentOS.md)

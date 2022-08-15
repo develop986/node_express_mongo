@@ -11,7 +11,7 @@
   - アプリ：[リンク](./app/)、[docker-compose.yml](./app/docker-compose.yml)、[Dockerfile](./app/Dockerfile)
 
 - 公開環境（VPSでの作業）
-　- 全体：[docker-compose.yml](docker-compose.yml)
+  - 全体：[docker-compose.yml](docker-compose.yml)
     - アプリ：[リンク](./app/)、[Dockerfile](./app/Dockerfile)
     - Nginx：[リンク](./nginx/)
     - MongoDB：[リンク](./mongo/)
@@ -19,7 +19,7 @@
     - Certbot：[リンク](./certbot/)、[docker-compose.yml](certbot/docker-compose.yml)
 
 
-### 開発環境（パソコンでの作業）
+### Dockerを使った開発環境構築（パソコンでの作業）
 
 #### ビルド（合わせて起動）
 
@@ -134,7 +134,7 @@ $ docker exec -it mongo bin/bash
 http://172.21.0.3:3000/
 ```
 
-### 公開環境（VPSでの作業）
+### Dockerを使った公開環境構築（VPSでの作業）
 
 > [Dockerインストール](https://github.com/develop986/ubuntu_server/blob/main/02.Docker.md) まで終わらせておくこと
 

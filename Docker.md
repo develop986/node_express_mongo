@@ -77,7 +77,10 @@ $ sudo su -
 # git clone https://github.com/develop986/node_express_mongo
 # cd node_express_mongo/certbot/
 # docker compose up -d nginx
-# docker compose run --rm certbot certonly --webroot -w /var/www/html -d nodeexpressmongo.mysv986.com -d mysv986.com
+
+一括で複数できるはずであるが、一つしかできなかったので、二回コマンドを実行
+# docker compose run --rm certbot certonly --webroot -w /var/www/html -d nodeexpressmongo.mysv986.com
+# docker compose run --rm certbot certonly --webroot -w /var/www/html -d mysv986.com
 
  (Enter 'c' to cancel): kuhataku@gmail.com
 
